@@ -68,6 +68,8 @@
       getPost(id) {
         if (!postCache[id]) {
           ajax(`/tags/${id}.json`).then(response => {
+            var n = 0;
+            postCache[id] = '';
             while (n < 3) {
               postCache[id] += '<b>test</b>' + response.topic_list.topics[n].title;
               n++;
