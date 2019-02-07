@@ -68,7 +68,7 @@
       getPost(id) {
         if (!postCache[id]) {
           ajax(`/t/${id}.json`).then(response => {
-            postCache[id] = response.post_stream.posts[0].cooked;
+            postCache[id] = '<b>test</b>' + response.post_stream.posts[0].cooked;
             this.scheduleRerender();
           });
         }
