@@ -67,11 +67,11 @@
       },
       getPost(id) {
         if (!postCache[id]) {
-          ajax(`/tags/${id}.json`).then(response => {
+          ajax(`/tags/allsvenskan.json`).then(response => {
             each(response.topic_list.topics, function(topic) {
               postCache[id] .= '<div><b>' + response.topic_list.topics[topic].title + '</b> ' + response.topic_list.topics[topic].excerpt + '</div><br />';
             });
-//            postCache[id] = '<b>test</b>' + response.post_stream.posts[0].cooked;
+
             this.scheduleRerender();
           });
         }
