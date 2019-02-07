@@ -68,7 +68,8 @@
       getPost(id) {
         if (!postCache[id]) {
           ajax(`/tags/${id}.json`).then(response => {
-            postCache[id] = '<b>test</b>' + response.topic_list.topics[0].title + '<b>test</b>' + response.topic_list.topics[1].title;
+            postCache[id] = 'hej';
+//            postCache[id] = '<b>test</b>' + response.topic_list.topics[0].title + '<b>test</b>' + response.topic_list.topics[1].title;
             this.scheduleRerender();
           });
         }
