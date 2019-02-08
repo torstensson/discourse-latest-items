@@ -16,7 +16,7 @@
     const { h } = require("virtual-dom");
     const { ajax } = require("discourse/lib/ajax");
     const postCache = {};
-    api.createWidget("latest-items", {
+    api.createWidget("category-sidebar", {
       tagName: "div.sticky-sidebar",
       html() {
         const path = window.location.pathname;
@@ -38,7 +38,7 @@
               innerHTML: this.getPost(setup["post"])
             })
           ];
-          return h("div.latest-items-contents " + ".latest-items-" + category.slug, nodes);
+          return h("div.category-sidebar-contents " + ".category-sidebar-" + category.slug, nodes);
           
         } else if (settings.inherit_parent_sidebar && /^\/c\//.test(path) && category.parentCategory && setups[category.parentCategory.slug] != undefined && setups[category.slug] == undefined ) { // Subcategory pages if unset, take on parent
           const setup = setups[category.parentCategory.slug];
@@ -49,7 +49,7 @@
               innerHTML: this.getPost(setup["post"])
             })
           ];
-          return h("div.latest-items-contents " + ".latest-items-", nodes);
+          return h("div.category-sidebar-contents " + ".category-sidebar-", nodes);
         } else if (setups["all"] && (/^\/$/.test(path) || /^\/latest/.test(path) || /^\/new/.test(path) || /^\/unread/.test(path) || /^\/top/.test(path)))  { // If set, show sidebar for category agnostic topic lists
           const setup = setups["all"];
           sidebarClasses(setup);
@@ -59,7 +59,7 @@
               innerHTML: this.getPost(setup["post"])
             })
           ];
-          return h("div.latest-items-contents " + ".latest-items-all", nodes);      
+          return h("div.category-sidebar-contents " + ".category-sidebar-all", nodes);      
        } else {
           $("body").removeClass("custom-sidebar");
           $(".topic-list").removeClass("with-sidebar");
@@ -82,6 +82,6 @@
     });
   </script>
   
-  <script type='text/x-handlebars' data-template-name='/connectors/below-header/latest-items'>
-    <div class="latest-items"> {{mount-widget widget="latest-items"}} </div>
+  <script type='text/x-handlebars' data-template-name='/connectors/below-header/category-sidebar'>
+    <div class="category-sidebar"> {{mount-widget widget="category-sidebar"}} </div>
   </script>
